@@ -118,42 +118,7 @@
 
   <!-- Inline p5 sketch directly in the first p5.js slot -->
   <script>
-    new p5(function(p){
-      let t=0;
-      p.setup = function(){
-        const c = p.createCanvas(p.windowWidth>900? 520: p.windowWidth-64, 340);
-        c.parent('canvas-holder');
-        p.noiseDetail(2, 0.4);
-      };
-      p.windowResized = function(){
-        const w = p.windowWidth>900? 520: p.windowWidth-64;
-        p.resizeCanvas(w, 340);
-      };
-      p.draw = function(){
-        p.background(15,18,28, 220);
-        p.noStroke();
-        for(let i=0;i<6;i++){
-          const x = p.width*(0.2 + 0.6*p.noise(i*99+t*.08));
-          const y = p.height*(0.2 + 0.6*p.noise(i*31+t*.08));
-          const r = 50 + 120*p.noise(i*7+t*.06);
-          p.fill(50+100*p.noise(i+1), 100+120*p.noise(i+2), 255, 32);
-          p.circle(x,y,r*2);
-        }
-        p.stroke(210, 224, 255, 120); p.noFill();
-        for(let y=30; y<p.height-20; y+=14){
-          p.beginShape();
-          for(let x=20; x<p.width-20; x+=18){
-            const n = p.noise(x*.005, y*.01, t*.02);
-            const yy = y + (n-0.5)*26;
-            p.vertex(x, yy);
-          }
-          p.endShape();
-        }
-        t += 0.8/60;
-      };
-    });
-  </script>
-
+    <script src="Sketch.js" width="30%"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
