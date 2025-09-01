@@ -27,15 +27,14 @@
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
 
-    /* Layout */
     .container{max-width:1100px; margin:0 auto; padding:24px}
+
     header{position:sticky; top:0; z-index:10; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient( to bottom, rgba(10,11,18,.85), rgba(10,11,18,.6)); border-bottom:1px solid rgba(255,255,255,.06)}
     .nav{display:flex; gap:18px; align-items:center; justify-content:space-between; padding:12px 0}
     .brand{display:flex; align-items:center; gap:12px}
     .brand .dot{width:10px; height:10px; border-radius:999px; background:var(--ring); box-shadow:0 0 16px var(--ring)}
     .nav a{font-family:Quicksand, system-ui; font-weight:600; opacity:.9}
 
-    /* Hero */
     .hero{display:grid; grid-template-columns:1.1fr 1fr; gap:28px; align-items:center; margin-top:34px}
     @media (max-width:900px){ .hero{grid-template-columns:1fr;}}
 
@@ -46,9 +45,7 @@
     .hero-copy p{margin:0; color:var(--muted)}
 
     .canvas-wrap{position:relative; min-height:320px; overflow:hidden; border-radius:22px; border:1px solid rgba(255,255,255,.08);}
-    .canvas-header{display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0)); font-family:Quicksand}
 
-    /* Portfolio CTA */
     .cta{display:grid; grid-template-columns:1.2fr .8fr; gap:22px; margin-top:28px}
     @media (max-width:900px){ .cta{grid-template-columns:1fr;}}
     .cta .cta-body{padding:24px}
@@ -78,7 +75,6 @@
   </header>
 
   <main class="container">
-    <!-- HERO -->
     <section id="about" class="hero">
       <div class="hero-left card">
         <img src="headshot.jpg" alt="Headshot of Ava Tartakovsky" class="headshot" />
@@ -89,15 +85,10 @@
       </div>
 
       <div id="sketch" class="card">
-        <div class="canvas-header">
-          <span>p5.js — generative play</span>
-          <span class="kbd">Sketch.js</span>
-        </div>
         <div class="canvas-wrap" id="canvas-holder" aria-label="p5.js canvas"></div>
       </div>
     </section>
 
-    <!-- PORTFOLIO CTA / HOW-TO -->
     <section id="portfolio" class="cta">
       <div class="card cta-body">
         <h2>Explore my portfolio</h2>
@@ -125,59 +116,45 @@
     </footer>
   </main>
 
-  <!-- Your external p5 sketch (kept for your repo structure). If you already have Sketch.js, this will run it into #canvas-holder. -->
+  <!-- Inline p5 sketch directly in the first p5.js slot -->
   <script>
-    // If you maintain a separate Sketch.js, inject its canvas into #canvas-holder by defining setup() to createCanvas
-    // and then calling canvas.parent('canvas-holder'). To keep this single-file working out of the box, we include a tiny
-    // fallback sketch that runs only if window.__AVA_HAS_EXTERNAL_SKETCH is not set by your Sketch.js.
-
-    (function(){
-      const hasExternal = false; // flip to true from your Sketch.js if you want to suppress the fallback
-      if(!hasExternal){
-        new p5(function(p){
-          let t=0;
-          p.setup = function(){
-            const c = p.createCanvas(p.windowWidth>900? 520: p.windowWidth-64, 340);
-            c.parent('canvas-holder');
-            p.noiseDetail(2, 0.4);
-          };
-          p.windowResized = function(){
-            const w = p.windowWidth>900? 520: p.windowWidth-64;
-            p.resizeCanvas(w, 340);
-          };
-          p.draw = function(){
-            p.background(15,18,28, 220);
-            p.noStroke();
-            // soft blobs
-            for(let i=0;i<6;i++){
-              const x = p.width*(0.2 + 0.6*p.noise(i*99+t*.08));
-              const y = p.height*(0.2 + 0.6*p.noise(i*31+t*.08));
-              const r = 50 + 120*p.noise(i*7+t*.06);
-              p.fill(50+100*p.noise(i+1), 100+120*p.noise(i+2), 255, 32);
-              p.circle(x,y,r*2);
-            }
-            // flowing lines
-            p.stroke(210, 224, 255, 120); p.noFill();
-            for(let y=30; y<p.height-20; y+=14){
-              p.beginShape();
-              for(let x=20; x<p.width-20; x+=18){
-                const n = p.noise(x*.005, y*.01, t*.02);
-                const yy = y + (n-0.5)*26;
-                p.vertex(x, yy);
-              }
-              p.endShape();
-            }
-            t += 0.8/60;
-          };
-        });
-      }
-    })();
+    new p5(function(p){
+      let t=0;
+      p.setup = function(){
+        const c = p.createCanvas(p.windowWidth>900? 520: p.windowWidth-64, 340);
+        c.parent('canvas-holder');
+        p.noiseDetail(2, 0.4);
+      };
+      p.windowResized = function(){
+        const w = p.windowWidth>900? 520: p.windowWidth-64;
+        p.resizeCanvas(w, 340);
+      };
+      p.draw = function(){
+        p.background(15,18,28, 220);
+        p.noStroke();
+        for(let i=0;i<6;i++){
+          const x = p.width*(0.2 + 0.6*p.noise(i*99+t*.08));
+          const y = p.height*(0.2 + 0.6*p.noise(i*31+t*.08));
+          const r = 50 + 120*p.noise(i*7+t*.06);
+          p.fill(50+100*p.noise(i+1), 100+120*p.noise(i+2), 255, 32);
+          p.circle(x,y,r*2);
+        }
+        p.stroke(210, 224, 255, 120); p.noFill();
+        for(let y=30; y<p.height-20; y+=14){
+          p.beginShape();
+          for(let x=20; x<p.width-20; x+=18){
+            const n = p.noise(x*.005, y*.01, t*.02);
+            const yy = y + (n-0.5)*26;
+            p.vertex(x, yy);
+          }
+          p.endShape();
+        }
+        t += 0.8/60;
+      };
+    });
   </script>
 
-  <!-- If you have an external Sketch.js, load it last; inside that file, call: createCanvas(w,h).parent('canvas-holder') -->
-  <script src="Sketch.js" defer></script>
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
