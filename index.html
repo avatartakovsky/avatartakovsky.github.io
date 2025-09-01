@@ -115,6 +115,19 @@
       </div>
     </footer>
   </main>
-    <script src="Sketch.js" width="30%"></script>
+
+  <!-- Load your Sketch.js file -->
+  <script src="Sketch.js"></script>
+  <script>
+    // Force the canvas to render inside the #canvas-holder
+    window.addEventListener("load", () => {
+      if (window.canvas && document.getElementById("canvas-holder")) {
+        window.canvas.parent("canvas-holder");
+      }
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
