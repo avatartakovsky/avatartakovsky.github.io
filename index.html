@@ -3,16 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Ava Tartakovsky — Home</title>
-  <meta name="description" content="Ava Tartakovsky — UCSB Sociology & Media Art and Design. Portfolio, projects, and p5.js experiments." />
+
+  <meta
+    name="description"
+    content="Portfolio of Ava Tartakovsky, a Los Angeles-based creative specializing in interior design, photography, creative production, and visual storytelling."
+  />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Quicksand:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
   <!-- p5.js -->
   <script src="https://cdn.jsdelivr.net/npm/p5@1.11.8/lib/p5.min.js"></script>
 
   <style>
-    :root{
+    :root {
       --bg: #0b0c10;
       --surface: rgba(17, 18, 24, 0.8);
       --text: #f5f7ff;
@@ -20,104 +29,365 @@
       --accent: #9ad0ff;
       --ring: #8b9dff;
       --card: #14161f;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
-    *{box-sizing:border-box}
-    html,body{
-      margin:0; padding:0; background:radial-gradient(1200px 800px at 10% 10%, #131524 0%, #0c0d15 45%, #0b0c10 100%);
-      color:var(--text); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      cursor:none; /* hide default cursor for custom blob */
-    }
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
 
-    .container{max-width:1100px; margin:0 auto; padding:24px}
-
-    header{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter:saturate(160%) blur(10px);
-      background:linear-gradient( to bottom, rgba(10,11,18,.85), rgba(10,11,18,.6));
-      border-bottom:1px solid rgba(255,255,255,.06)
+    * {
+      box-sizing: border-box;
     }
-    .nav{display:flex; gap:18px; align-items:center; justify-content:space-between; padding:12px 0}
-    .brand{display:flex; align-items:center; gap:12px}
-    .brand .dot{width:10px; height:10px; border-radius:999px; background:var(--ring); box-shadow:0 0 16px var(--ring)}
-    .nav a{font-family:Quicksand, system-ui; font-weight:600; opacity:.9}
 
-    /* Hamburger */
-    .hamburger{
-      display:none; width:40px; height:40px; border:1px solid rgba(255,255,255,.12);
-      border-radius:12px; background:rgba(255,255,255,.04);
-      align-items:center; justify-content:center; cursor:pointer;
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(
+          1200px 800px at 10% 10%,
+          #131524 0%,
+          #0c0d15 45%,
+          #0b0c10 100%
+        );
+      color: var(--text);
+      font-family:
+        Poppins,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+      cursor: none;
     }
-    .hamburger span, .hamburger::before, .hamburger::after{
-      content:""; display:block; width:18px; height:2px; background:#e9edff; border-radius:2px;
-      position:relative; transition:transform .2s ease, opacity .2s ease;
-    }
-    .hamburger::before{position:absolute; transform:translateY(-6px)}
-    .hamburger::after{position:absolute; transform:translateY(6px)}
-    .hamburger[aria-expanded="true"] span{opacity:0}
-    .hamburger[aria-expanded="true"]::before{transform:rotate(45deg)}
-    .hamburger[aria-expanded="true"]::after{transform:rotate(-45deg)}
 
-    .nav-links{display:flex; gap:16px; align-items:center}
-    @media (max-width: 820px){
-      .hamburger{display:flex}
-      .nav-links{
-        position:absolute; right:24px; top:64px; flex-direction:column; align-items:stretch;
-        background:rgba(14,16,24,.92); border:1px solid rgba(255,255,255,.08); border-radius:14px;
-        padding:12px; min-width:180px; box-shadow:var(--shadow); display:none;
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: saturate(160%) blur(10px);
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 11, 18, 0.85),
+        rgba(10, 11, 18, 0.6)
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--ring);
+      box-shadow: 0 0 16px var(--ring);
+    }
+
+    .nav a {
+      font-family: Quicksand, system-ui, sans-serif;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* Mobile navigation */
+    .hamburger {
+      display: none;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .hamburger span,
+    .hamburger::before,
+    .hamburger::after {
+      content: "";
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #e9edff;
+      border-radius: 2px;
+      position: relative;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    .hamburger::before {
+      position: absolute;
+      transform: translateY(-6px);
+    }
+
+    .hamburger::after {
+      position: absolute;
+      transform: translateY(6px);
+    }
+
+    .hamburger[aria-expanded="true"] span {
+      opacity: 0;
+    }
+
+    .hamburger[aria-expanded="true"]::before {
+      transform: rotate(45deg);
+    }
+
+    .hamburger[aria-expanded="true"]::after {
+      transform: rotate(-45deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 28px;
+      align-items: center;
+      margin-top: 34px;
+    }
+
+    .card {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.06),
+        rgba(255, 255, 255, 0.02)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-left {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      padding: 28px;
+    }
+
+    .headshot {
+      width: 260px;
+      max-width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 22px;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy h1 {
+      margin: 0 0 10px;
+      font-size: clamp(32px, 4vw, 56px);
+      line-height: 1.02;
+    }
+
+    .hero-copy p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .canvas-wrap {
+      position: relative;
+      min-height: 320px;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Portfolio and contact cards */
+    .cta {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .cta .cta-body {
+      padding: 24px;
+    }
+
+    .cta h2 {
+      margin: 0 0 12px;
+      font-size: clamp(24px, 3vw, 36px);
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      margin: 6px 0;
+      background: linear-gradient(180deg, var(--ring), #6ea8ff);
+      color: #0a0b12;
+      border: 0;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(110, 168, 255, 0.35);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+      transition: transform 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    .kbd {
+      padding: 2px 8px;
+      background: #0c1220;
+      color: #d7e4ff;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+    }
+
+    /* Custom cursor */
+    .cursor-blob {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 50;
+      width: 28px;
+      height: 28px;
+      pointer-events: none;
+      border-radius: 60% 40% 65% 35% / 45% 55% 45% 55%;
+      background: radial-gradient(
+        40% 40% at 35% 35%,
+        rgba(255, 255, 255, 0.85),
+        rgba(200, 220, 255, 0.35) 60%,
+        rgba(255, 255, 255, 0) 70%
+      );
+      filter: blur(0.2px);
+      mix-blend-mode: screen;
+      transform: translate(-50%, -50%);
+      transition: border-radius 0.35s ease;
+    }
+
+    .cursor-blob.is-hover {
+      border-radius: 35% 65% 40% 60% / 65% 35% 60% 40%;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
       }
-      .nav-links.open{display:flex}
-      .nav a{padding:10px 12px; border-radius:10px}
-      .nav a:hover{background:rgba(255,255,255,.06); text-decoration:none}
+
+      .cta {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .hero{display:grid; grid-template-columns:1.1fr 1fr; gap:28px; align-items:center; margin-top:34px}
-    @media (max-width:900px){ .hero{grid-template-columns:1fr;}}
+    @media (max-width: 820px) {
+      html,
+      body {
+        cursor: auto;
+      }
 
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.08); border-radius:22px; box-shadow:var(--shadow)
+      .cursor-blob {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        right: 24px;
+        top: 64px;
+        display: none;
+        min-width: 180px;
+        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        background: rgba(14, 16, 24, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav a {
+        padding: 10px 12px;
+        border-radius: 10px;
+      }
+
+      .nav a:hover {
+        background: rgba(255, 255, 255, 0.06);
+        text-decoration: none;
+      }
+
+      .hero-left {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .headshot {
+        width: 100%;
+        max-height: 420px;
+      }
     }
-    .headshot{aspect-ratio:1/1; width:260px; max-width:100%; border-radius:22px; object-fit:cover; border:1px solid rgba(255,255,255,.1); box-shadow:var(--shadow)}
-    .hero-left{display:flex; gap:22px; align-items:center; padding:28px}
-    .hero-copy h1{font-size:clamp(32px, 4vw, 56px); line-height:1.02; margin:0 0 10px}
-    .hero-copy p{margin:0; color:var(--muted)}
-
-    .canvas-wrap{position:relative; min-height:320px; overflow:hidden; border-radius:22px; border:1px solid rgba(255,255,255,.08);}
-
-    /* Two cards side-by-side (Portfolio + Contact) */
-    .cta{display:grid; grid-template-columns:1.2fr .8fr; gap:22px; margin-top:28px}
-    @media (max-width:900px){ .cta{grid-template-columns:1fr;}}
-    .cta .cta-body{padding:24px}
-    .cta h2{margin:0 0 12px; font-size:clamp(24px, 3vw, 36px)}
-    .cta p{color:var(--muted); margin-top:0}
-
-    .button{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 16px;
-      background:linear-gradient(180deg, var(--ring), #6ea8ff); color:#0a0b12; border-radius:14px;
-      font-weight:800; letter-spacing:.2px; border:0; box-shadow:0 6px 18px rgba(110,168,255,.35);
-      margin:6px 0; transition:transform 0.15s;
-    }
-    .button:hover{transform:translateY(-2px)}
-    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:#0c1220; color:#d7e4ff; border:1px solid rgba(255,255,255,.12); padding:2px 8px; border-radius:8px}
-
-    footer{margin-top:40px; padding:24px 0; border-top:1px solid rgba(255,255,255,.08); color:var(--muted)}
-
-    /* Custom blob cursor */
-    .cursor-blob{
-      position:fixed; left:0; top:0; width:28px; height:28px; pointer-events:none; z-index:50;
-      border-radius:60% 40% 65% 35% / 45% 55% 45% 55%;
-      background:radial-gradient(40% 40% at 35% 35%, rgba(255,255,255,.85), rgba(200,220,255,.35) 60%, rgba(255,255,255,0) 70%);
-      filter:blur(0.2px);
-      mix-blend-mode:screen;
-      transform:translate(-50%,-50%);
-      transition:border-radius .35s ease;
-    }
-    .cursor-blob.is-hover{border-radius:35% 65% 40% 60% / 65% 35% 60% 40%}
   </style>
 </head>
+
 <body>
   <header>
     <div class="container nav">
@@ -126,14 +396,18 @@
         <strong>Ava Tartakovsky</strong>
       </div>
 
-      <!-- Mobile controls -->
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
         <span></span>
       </button>
 
-      <nav class="nav-links" id="navLinks" style="display:flex;">
+      <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
-        <a href="#sketch">p5.js</a>
+        <a href="#sketch">Interactive Art</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -141,107 +415,183 @@
   </header>
 
   <main class="container">
-    <!-- HERO -->
+    <!-- Hero -->
     <section id="about" class="hero">
       <div class="hero-left card">
-        <img src="headshot.jpg" alt="Headshot of Ava Tartakovsky" class="headshot" />
+        <img
+          src="IMG_1521.JPG"
+          alt="Portrait of Ava Tartakovsky"
+          class="headshot"
+        />
+
         <div class="hero-copy">
           <h1>Hi, I’m Ava.</h1>
-          <p>I’m a UCSB student majoring in Sociology and minoring in Media Art & Design, also pursuing the Technology Management Certificate. I make things that live between code, design, and social theory.</p>
+
+          <p>
+            I’m a recent UC Santa Barbara graduate based in Los Angeles with a
+            degree in Sociology, a minor in Media Arts &amp; Design, and a
+            Technology Management Certificate. With experience in interior
+            design, photography, luxury hospitality, and creative production, I
+            enjoy creating thoughtful visual experiences while combining
+            creativity with strong organization and attention to detail.
+          </p>
         </div>
       </div>
 
       <div id="sketch" class="card">
-        <div class="canvas-wrap" id="canvas-holder" aria-label="p5.js canvas"></div>
+        <div
+          class="canvas-wrap"
+          id="canvas-holder"
+          aria-label="Interactive digital artwork"
+        ></div>
       </div>
     </section>
 
-    <!-- CTA ROW: Portfolio (left) + Contact (right) -->
+    <!-- Portfolio and contact -->
     <section id="portfolio" class="cta">
-      <!-- Portfolio Card -->
       <div class="card cta-body">
         <h2>Explore my portfolio</h2>
-        <p>There are two easy ways to access my work:</p>
-        <ol>
-          <li>Use the button → it opens my portfolio in a new tab.</li>
-          <li>Or type <span class="kbd">avatartakovsky.github.io/portfolio</span> into your browser.</li>
-        </ol>
-        <p style="margin-top:12px">
-          <a class="button" href="https://avatartakovsky.github.io/portfolio" target="_blank" rel="noopener">Open Portfolio</a>
+
+        <p>
+          View my work in interior design, photography, graphic design, and
+          creative production.
+        </p>
+
+        <p style="margin-top: 12px">
+          <a
+            class="button"
+            href="https://avatartakovsky.github.io/portfolio"
+            target="_blank"
+            rel="noopener"
+          >
+            Open Portfolio
+          </a>
         </p>
       </div>
 
-      <!-- Contact Card (side-by-side) -->
       <div id="contact" class="card cta-body">
         <h2>Contact Me</h2>
-        <p>Get in touch with me through the links below:</p>
-        <p><a class="button" href="mailto:avatartakovsky@ucsb.edu">Email Me</a></p>
-        <p><a class="button" href="https://linkedin.com/in/ava-tartakovsky" target="_blank" rel="noopener">LinkedIn</a></p>
-        <p><a class="button" href="https://instagram.com/avatartakovsky" target="_blank" rel="noopener">Instagram</a></p>
+
+        <p>Get in touch through the links below.</p>
+
+        <p>
+          <a
+            class="button"
+            href="mailto:avatartakovsky1@gmail.com"
+          >
+            Email
+          </a>
+        </p>
+
+        <p>
+          <a
+            class="button"
+            href="https://linkedin.com/in/ava-tartakovsky"
+            target="_blank"
+            rel="noopener"
+          >
+            LinkedIn
+          </a>
+        </p>
+
+        <p>
+          <a
+            class="button"
+            href="https://instagram.com/avatartakovsky"
+            target="_blank"
+            rel="noopener"
+          >
+            Instagram
+          </a>
+        </p>
       </div>
     </section>
 
     <footer>
-      <div class="container" style="padding:0">
-        <small>© <span id="year"></span> Ava Tartakovsky. Built with HTML & p5.js.</small>
-      </div>
+      <small>
+        © <span id="year"></span> Ava Tartakovsky. Built with HTML and p5.js.
+      </small>
     </footer>
   </main>
 
-  <!-- Custom blob cursor element -->
-  <div class="cursor-blob" id="cursorBlob" aria-hidden="true"></div>
+  <div
+    class="cursor-blob"
+    id="cursorBlob"
+    aria-hidden="true"
+  ></div>
 
-  <!-- Load your Sketch.js after the canvas-holder exists -->
+  <!-- Keep sketch.js in the same GitHub folder as this HTML file -->
   <script src="sketch.js"></script>
-  <script>
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Hamburger toggle
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    function setMenu(open){
-      hamburger.setAttribute('aria-expanded', String(open));
-      if (window.matchMedia('(max-width: 820px)').matches) {
-        navLinks.classList.toggle('open', open);
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    function setMenu(open) {
+      hamburger.setAttribute("aria-expanded", String(open));
+
+      if (window.matchMedia("(max-width: 820px)").matches) {
+        navLinks.classList.toggle("open", open);
       } else {
-        navLinks.classList.remove('open');
+        navLinks.classList.remove("open");
       }
     }
-    hamburger.addEventListener('click', () => {
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+
+    hamburger.addEventListener("click", () => {
+      const expanded =
+        hamburger.getAttribute("aria-expanded") === "true";
+
       setMenu(!expanded);
     });
-    // Close menu on link click (mobile)
-    navLinks.querySelectorAll('a').forEach(a=>{
-      a.addEventListener('click', ()=> setMenu(false));
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenu(false));
     });
-    // Ensure correct state on resize
-    window.addEventListener('resize', ()=> setMenu(false));
 
-    // Abstract blob cursor
-    const blob = document.getElementById('cursorBlob');
-    let mx = window.innerWidth/2, my = window.innerHeight/2;
-    let x = mx, y = my; // follower position
-    let raf;
-    document.addEventListener('mousemove', (e)=>{
-      mx = e.clientX; my = e.clientY;
-    }, {passive:true});
+    window.addEventListener("resize", () => setMenu(false));
 
-    function animate(){
-      // ease towards mouse
-      x += (mx - x) * 0.18;
-      y += (my - y) * 0.18;
-      blob.style.transform = `translate(${x}px, ${y}px)`;
-      raf = requestAnimationFrame(animate);
+    const blob = document.getElementById("cursorBlob");
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let blobX = mouseX;
+    let blobY = mouseY;
+
+    document.addEventListener(
+      "mousemove",
+      (event) => {
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+      },
+      { passive: true }
+    );
+
+    function animateCursor() {
+      blobX += (mouseX - blobX) * 0.18;
+      blobY += (mouseY - blobY) * 0.18;
+
+      blob.style.transform =
+        `translate(${blobX}px, ${blobY}px)`;
+
+      requestAnimationFrame(animateCursor);
     }
-    animate();
 
-    // Hover morph on interactive elements
-    const hoverables = Array.from(document.querySelectorAll('a, button, .button'));
-    hoverables.forEach(el=>{
-      el.addEventListener('mouseenter', ()=> blob.classList.add('is-hover'));
-      el.addEventListener('mouseleave', ()=> blob.classList.remove('is-hover'));
+    animateCursor();
+
+    const hoverableElements =
+      document.querySelectorAll("a, button, .button");
+
+    hoverableElements.forEach((element) => {
+      element.addEventListener("mouseenter", () => {
+        blob.classList.add("is-hover");
+      });
+
+      element.addEventListener("mouseleave", () => {
+        blob.classList.remove("is-hover");
+      });
     });
   </script>
 </body>
