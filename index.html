@@ -36,6 +36,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     html,
     body {
       margin: 0;
@@ -174,15 +178,7 @@
       align-items: center;
     }
 
-    /* Hero */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 28px;
-      align-items: center;
-      margin-top: 34px;
-    }
-
+    /* Cards */
     .card {
       background: linear-gradient(
         180deg,
@@ -194,40 +190,78 @@
       box-shadow: var(--shadow);
     }
 
-    .hero-left {
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+      margin-top: 34px;
+    }
+
+    .intro-card {
       display: flex;
-      gap: 22px;
-      align-items: center;
-      padding: 28px;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .image-wrap {
+      width: 100%;
+      padding: 28px 28px 0;
     }
 
     .headshot {
-      width: 260px;
-      max-width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 22px;
+      display: block;
+      width: 100%;
+      height: 500px;
       object-fit: cover;
+      object-position: center 30%;
+      border-radius: 18px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: var(--shadow);
     }
 
+    .hero-copy {
+      padding: 30px 34px 36px;
+      text-align: left;
+    }
+
     .hero-copy h1 {
-      margin: 0 0 10px;
-      font-size: clamp(32px, 4vw, 56px);
+      margin: 0 0 16px;
+      font-size: clamp(38px, 4vw, 60px);
       line-height: 1.02;
     }
 
     .hero-copy p {
+      max-width: 680px;
       margin: 0;
       color: var(--muted);
+      font-family: Quicksand, system-ui, sans-serif;
+      font-size: 1.04rem;
+      line-height: 1.8;
+    }
+
+    .interactive-card {
+      min-height: 100%;
+      overflow: hidden;
+    }
+
+    .interactive-label {
+      padding: 18px 20px 0;
+      color: var(--muted);
+      font-family: Quicksand, system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .canvas-wrap {
       position: relative;
-      min-height: 320px;
+      min-height: 620px;
+      height: 100%;
       overflow: hidden;
       border-radius: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     /* Portfolio and contact cards */
@@ -239,7 +273,7 @@
     }
 
     .cta .cta-body {
-      padding: 24px;
+      padding: 26px;
     }
 
     .cta h2 {
@@ -250,6 +284,8 @@
     .cta p {
       color: var(--muted);
       margin-top: 0;
+      font-family: Quicksand, system-ui, sans-serif;
+      line-height: 1.7;
     }
 
     .button {
@@ -272,21 +308,6 @@
     .button:hover {
       transform: translateY(-2px);
       text-decoration: none;
-    }
-
-    .kbd {
-      padding: 2px 8px;
-      background: #0c1220;
-      color: #d7e4ff;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      font-family:
-        ui-monospace,
-        SFMono-Regular,
-        Menlo,
-        Monaco,
-        Consolas,
-        monospace;
     }
 
     footer {
@@ -323,12 +344,17 @@
     }
 
     @media (max-width: 900px) {
-      .hero {
+      .hero,
+      .cta {
         grid-template-columns: 1fr;
       }
 
-      .cta {
-        grid-template-columns: 1fr;
+      .headshot {
+        height: 560px;
+      }
+
+      .canvas-wrap {
+        min-height: 360px;
       }
     }
 
@@ -375,14 +401,30 @@
         text-decoration: none;
       }
 
-      .hero-left {
-        flex-direction: column;
-        align-items: flex-start;
+      .image-wrap {
+        padding: 18px 18px 0;
       }
 
       .headshot {
-        width: 100%;
-        max-height: 420px;
+        height: 460px;
+      }
+
+      .hero-copy {
+        padding: 26px 24px 30px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .container {
+        padding: 18px;
+      }
+
+      .headshot {
+        height: 390px;
+      }
+
+      .hero-copy h1 {
+        font-size: 38px;
       }
     }
   </style>
@@ -415,14 +457,15 @@
   </header>
 
   <main class="container">
-    <!-- Hero -->
     <section id="about" class="hero">
-      <div class="hero-left card">
-        <img
-          src="IMG_1521.JPG"
-          alt="Portrait of Ava Tartakovsky"
-          class="headshot"
-        />
+      <article class="intro-card card">
+        <div class="image-wrap">
+          <img
+            src="IMG_1521.JPG"
+            alt="Portrait of Ava Tartakovsky"
+            class="headshot"
+          />
+        </div>
 
         <div class="hero-copy">
           <h1>Hi, I’m Ava.</h1>
@@ -436,18 +479,19 @@
             creativity with strong organization and attention to detail.
           </p>
         </div>
-      </div>
+      </article>
 
-      <div id="sketch" class="card">
+      <aside id="sketch" class="interactive-card card">
+        <div class="interactive-label">Interactive Art</div>
+
         <div
           class="canvas-wrap"
           id="canvas-holder"
           aria-label="Interactive digital artwork"
         ></div>
-      </div>
+      </aside>
     </section>
 
-    <!-- Portfolio and contact -->
     <section id="portfolio" class="cta">
       <div class="card cta-body">
         <h2>Explore my portfolio</h2>
