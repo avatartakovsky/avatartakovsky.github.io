@@ -11,9 +11,10 @@
     content="Portfolio of Ava Tartakovsky, a Los Angeles-based creative specializing in interior design, photography, creative production, and visual storytelling."
   />
 
-  <!-- Fonts -->
+  <!-- Fonts: Fraunces (display serif), Inter (body), Space Mono (labels/eyebrows) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Quicksand:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet"
   />
 
@@ -22,13 +23,17 @@
 
   <style>
     :root {
-      --bg: #0b0c10;
-      --text: #f5f7ff;
-      --muted: #c9ccda;
-      --accent: #9ad0ff;
-      --ring: #8b9dff;
-      --card: #14161f;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      /* ===== Palette: warm plaster / ink / brass — materials of an interior-design studio ===== */
+      --paper: #f5efe3;
+      --paper-deep: #ece2ce;
+      --paper-line: rgba(33, 30, 26, 0.12);
+      --ink: #211e1a;
+      --ink-muted: #6b6357;
+      --brass: #a9824e;
+      --brass-deep: #8c6b3e;
+      --clay: #9c5b42;
+      --shadow: 0 20px 44px rgba(33, 30, 26, 0.16);
+      --shadow-soft: 0 8px 22px rgba(33, 30, 26, 0.09);
     }
 
     * {
@@ -44,15 +49,12 @@
       margin: 0;
       padding: 0;
       background:
-        radial-gradient(
-          1200px 800px at 10% 10%,
-          #131524 0%,
-          #0c0d15 45%,
-          #0b0c10 100%
-        );
-      color: var(--text);
+        radial-gradient(1100px 760px at 6% -12%, rgba(169, 130, 78, 0.13), transparent 58%),
+        radial-gradient(900px 720px at 104% 4%, rgba(156, 91, 66, 0.09), transparent 55%),
+        var(--paper);
+      color: var(--ink);
       font-family:
-        Poppins,
+        Inter,
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
@@ -65,7 +67,7 @@
     }
 
     a {
-      color: var(--accent);
+      color: var(--brass-deep);
       text-decoration: none;
     }
 
@@ -83,13 +85,9 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: saturate(160%) blur(10px);
-      background: linear-gradient(
-        to bottom,
-        rgba(10, 11, 18, 0.88),
-        rgba(10, 11, 18, 0.65)
-      );
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: saturate(140%) blur(10px);
+      background: rgba(245, 239, 227, 0.86);
+      border-bottom: 1px solid var(--paper-line);
     }
 
     .nav {
@@ -97,27 +95,39 @@
       gap: 18px;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 0;
+      padding: 14px 0;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
+      font-family: "Fraunces", serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
     }
 
     .brand .dot {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 999px;
-      background: var(--ring);
-      box-shadow: 0 0 16px var(--ring);
+      background: var(--brass);
+      box-shadow: 0 0 0 4px rgba(169, 130, 78, 0.18);
     }
 
     .nav a {
-      font-family: Quicksand, system-ui, sans-serif;
-      font-weight: 600;
-      opacity: 0.9;
+      font-family: "Space Mono", monospace;
+      font-weight: 400;
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .nav a:hover {
+      color: var(--ink);
+      text-decoration: none;
     }
 
     /* Mobile navigation */
@@ -126,9 +136,9 @@
       position: relative;
       width: 40px;
       height: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--paper-line);
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(255, 255, 255, 0.35);
       align-items: center;
       justify-content: center;
       cursor: pointer;
@@ -141,7 +151,7 @@
       display: block;
       width: 18px;
       height: 2px;
-      background: #e9edff;
+      background: var(--ink);
       border-radius: 2px;
       position: relative;
       transition:
@@ -173,20 +183,28 @@
 
     .nav-links {
       display: flex;
-      gap: 16px;
+      gap: 22px;
       align-items: center;
     }
 
     /* Shared card styling */
     .card {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.06),
-        rgba(255, 255, 255, 0.02)
-      );
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.15)), var(--paper-deep);
+      border: 1px solid var(--paper-line);
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Eyebrow labels — used like museum wall-text, only where it adds real info */
+    .eyebrow {
+      display: block;
+      margin-bottom: 10px;
+      font-family: "Space Mono", monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass-deep);
     }
 
     /* Main introduction */
@@ -195,7 +213,7 @@
       grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
       gap: 26px;
       align-items: start;
-      margin-top: 34px;
+      margin-top: 40px;
     }
 
     .intro-card {
@@ -203,69 +221,81 @@
     }
 
     .image-wrap {
-      padding: 26px 26px 0;
+      padding: 22px 22px 0;
     }
 
     .headshot {
       display: block;
       width: 100%;
-      height: 570px;
+      height: 540px;
       object-fit: cover;
-
-      /*
-        First value moves the photo left/right.
-        Second value moves the photo up/down.
-        This moves you left and upward compared with the previous crop.
-      */
       object-position: 72% 24%;
-
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      border: 1px solid rgba(169, 130, 78, 0.35);
       box-shadow: var(--shadow);
     }
 
+    .plate {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 14px 22px 0;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--paper-line);
+      font-family: "Space Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .plate strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
     .hero-copy {
-      padding: 30px 34px 38px;
+      padding: 26px 34px 36px;
     }
 
     .hero-copy h1 {
-      margin: 0 0 16px;
-      font-size: clamp(40px, 4.5vw, 64px);
-      line-height: 1.02;
+      margin: 0 0 18px;
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      font-size: clamp(38px, 4.2vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-copy h1 em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--clay);
     }
 
     .hero-copy p {
       max-width: 760px;
       margin: 0;
-      color: var(--muted);
-      font-family: Quicksand, system-ui, sans-serif;
-      font-size: 1.05rem;
+      color: var(--ink-muted);
+      font-size: 1.04rem;
       line-height: 1.8;
     }
 
     /* Interactive art card */
     .art-card {
-      padding: 18px;
+      padding: 20px;
     }
 
     .art-heading {
-      padding: 4px 4px 14px;
-    }
-
-    .art-label {
-      display: block;
-      margin-bottom: 5px;
-      color: var(--accent);
-      font-family: Quicksand, system-ui, sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      padding: 2px 2px 14px;
     }
 
     .art-heading h2 {
       margin: 0;
-      font-size: 1.45rem;
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      font-size: 1.4rem;
     }
 
     .canvas-shell {
@@ -273,14 +303,9 @@
       aspect-ratio: 1 / 1;
       overflow: hidden;
       position: relative;
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(139, 157, 255, 0.11),
-          rgba(8, 10, 16, 0.9)
-        );
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
+      background: radial-gradient(circle at center, rgba(169, 130, 78, 0.16), rgba(236, 226, 206, 0.9));
+      border: 1px solid rgba(169, 130, 78, 0.3);
+      border-radius: 12px;
     }
 
     .canvas-wrap {
@@ -303,9 +328,8 @@
 
     .art-description {
       margin: 16px 4px 4px;
-      color: var(--muted);
-      font-family: Quicksand, system-ui, sans-serif;
-      font-size: 0.95rem;
+      color: var(--ink-muted);
+      font-size: 0.94rem;
       line-height: 1.65;
     }
 
@@ -314,22 +338,23 @@
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 22px;
-      margin-top: 28px;
+      margin-top: 30px;
     }
 
     .cta-body {
-      padding: 27px;
+      padding: 30px;
     }
 
     .cta h2 {
       margin: 0 0 12px;
-      font-size: clamp(24px, 3vw, 36px);
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      font-size: clamp(24px, 3vw, 34px);
     }
 
     .cta p {
       margin-top: 0;
-      color: var(--muted);
-      font-family: Quicksand, system-ui, sans-serif;
+      color: var(--ink-muted);
       line-height: 1.7;
     }
 
@@ -338,15 +363,18 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 12px 16px;
+      padding: 12px 18px;
       margin: 6px 0;
-      background: linear-gradient(180deg, var(--ring), #6ea8ff);
-      color: #0a0b12;
+      background: linear-gradient(180deg, var(--brass), var(--brass-deep));
+      color: #fbf6ea;
       border: 0;
-      border-radius: 14px;
-      box-shadow: 0 6px 18px rgba(110, 168, 255, 0.35);
-      font-weight: 800;
-      letter-spacing: 0.2px;
+      border-radius: 999px;
+      box-shadow: 0 8px 18px rgba(140, 107, 62, 0.32);
+      font-family: "Space Mono", monospace;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       transition:
         transform 0.15s ease,
         box-shadow 0.15s ease;
@@ -355,14 +383,17 @@
     .button:hover {
       transform: translateY(-2px);
       text-decoration: none;
-      box-shadow: 0 9px 22px rgba(110, 168, 255, 0.42);
+      box-shadow: 0 11px 22px rgba(140, 107, 62, 0.4);
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 44px;
       padding: 24px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--muted);
+      border-top: 1px solid var(--paper-line);
+      color: var(--ink-muted);
+      font-family: "Space Mono", monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
     }
 
     /* Custom cursor */
@@ -371,24 +402,39 @@
       left: 0;
       top: 0;
       z-index: 50;
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       pointer-events: none;
       border-radius: 60% 40% 65% 35% / 45% 55% 45% 55%;
       background: radial-gradient(
         40% 40% at 35% 35%,
-        rgba(255, 255, 255, 0.85),
-        rgba(200, 220, 255, 0.35) 60%,
-        rgba(255, 255, 255, 0) 70%
+        rgba(169, 130, 78, 0.75),
+        rgba(169, 130, 78, 0.28) 60%,
+        rgba(169, 130, 78, 0) 72%
       );
-      filter: blur(0.2px);
-      mix-blend-mode: screen;
+      mix-blend-mode: multiply;
       transform: translate(-50%, -50%);
       transition: border-radius 0.35s ease;
     }
 
     .cursor-blob.is-hover {
       border-radius: 35% 65% 40% 60% / 65% 35% 60% 40%;
+    }
+
+    /* Visible keyboard focus throughout */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--brass-deep);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .cursor-blob {
+        transition: none;
+      }
     }
 
     @media (max-width: 950px) {
@@ -403,7 +449,7 @@
       }
 
       .headshot {
-        height: 620px;
+        height: 600px;
       }
 
       .cta {
@@ -430,12 +476,12 @@
         right: 24px;
         top: 64px;
         display: none;
-        min-width: 180px;
-        padding: 12px;
+        min-width: 190px;
+        padding: 10px;
         flex-direction: column;
         align-items: stretch;
-        background: rgba(14, 16, 24, 0.94);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(245, 239, 227, 0.98);
+        border: 1px solid var(--paper-line);
         border-radius: 14px;
         box-shadow: var(--shadow);
       }
@@ -450,7 +496,7 @@
       }
 
       .nav a:hover {
-        background: rgba(255, 255, 255, 0.06);
+        background: rgba(169, 130, 78, 0.12);
         text-decoration: none;
       }
 
@@ -459,12 +505,16 @@
       }
 
       .headshot {
-        height: 520px;
+        height: 500px;
         object-position: 88% 68%;
       }
 
+      .plate {
+        margin: 12px 18px 0;
+      }
+
       .hero-copy {
-        padding: 26px 24px 31px;
+        padding: 24px 24px 30px;
       }
     }
 
@@ -475,16 +525,16 @@
 
       .hero {
         gap: 20px;
-        margin-top: 22px;
+        margin-top: 26px;
       }
 
       .headshot {
-        height: 430px;
+        height: 410px;
         object-position: 88% 68%;
       }
 
       .hero-copy h1 {
-        font-size: 39px;
+        font-size: 36px;
       }
 
       .hero-copy p {
@@ -493,7 +543,7 @@
       }
 
       .art-card {
-        padding: 14px;
+        padding: 16px;
       }
     }
   </style>
@@ -504,7 +554,7 @@
     <div class="container nav">
       <div class="brand">
         <span class="dot" aria-hidden="true"></span>
-        <strong>Ava Tartakovsky</strong>
+        <span>Ava Tartakovsky</span>
       </div>
 
       <button
@@ -531,14 +581,20 @@
       <article class="intro-card card">
         <div class="image-wrap">
           <img
-            src="IMG_1521.JPG"
+            src="IMG_1521%20copy.jpg"
             alt="Portrait of Ava Tartakovsky"
             class="headshot"
           />
         </div>
 
+        <p class="plate">
+          <span><strong>Ava Tartakovsky</strong> — Creative</span>
+          <span>Los Angeles, CA</span>
+        </p>
+
         <div class="hero-copy">
-          <h1>Hi, I’m Ava.</h1>
+          <span class="eyebrow">Interior Design · Photography · Production</span>
+          <h1>Hi, I’m <em>Ava</em>.</h1>
 
           <p>
             I’m a recent UC Santa Barbara graduate based in Los Angeles with a
@@ -554,7 +610,7 @@
       <!-- Interactive art -->
       <aside id="sketch" class="art-card card">
         <div class="art-heading">
-          <span class="art-label">Digital Experiment</span>
+          <span class="eyebrow">Digital Experiment</span>
           <h2>Interactive Art</h2>
         </div>
 
@@ -576,6 +632,7 @@
     <!-- Portfolio and contact -->
     <section id="portfolio" class="cta">
       <div class="card cta-body">
+        <span class="eyebrow">Selected Work</span>
         <h2>Explore my portfolio</h2>
 
         <p>
@@ -596,9 +653,10 @@
       </div>
 
       <div id="contact" class="card cta-body">
+        <span class="eyebrow">Get in Touch</span>
         <h2>Contact Me</h2>
 
-        <p>Get in touch through the links below.</p>
+        <p>Reach out through any of the links below.</p>
 
         <p>
           <a
